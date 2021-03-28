@@ -55,7 +55,7 @@ export const orderReducer = (
     case GET_ORDERS_ERROR:
       return {
         ...state,
-        error: { ...state.error, ...action.payload },
+        error: { ...state.error, ...action.payload.error },
         isLoading: false,
       };
     default:
