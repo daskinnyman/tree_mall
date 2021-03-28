@@ -3,7 +3,7 @@ import axios from "axios";
 const SECONDS = 1000;
 
 const instance = axios.create({
-  timeout: SECONDS * 60,
+  timeout: SECONDS * 6,
 });
 
 instance.interceptors.request.use(
@@ -18,7 +18,6 @@ instance.interceptors.response.use(
     return Promise.resolve(response);
   },
   async (error) => {
-    console.log(error);
     if (error.response?.status) {
       switch (error.response.status) {
         case 400:
