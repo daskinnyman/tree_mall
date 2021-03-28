@@ -1,11 +1,16 @@
+@import "../../index.scss";
+
+$prefixHeight: 16px;
+$prefixWidth: 4px;
+
 .ListHeader {
   &___label::before {
     display: inline-block;
     content: "";
-    background-color: #00994e;
-    background-size: 4px 16px;
-    height: 16px;
-    width: 4px;
+    background-color: $primary;
+    background-size: $prefixWidth $prefixHeight;
+    height: $prefixHeight;
+    width: $prefixWidth;
     margin-right: 6px;
   }
 }

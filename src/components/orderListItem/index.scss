@@ -1,0 +1,32 @@
+@import "../../index.scss";
+
+$iconSize: 50px;
+
+.OderListItem {
+  background-color: $white;
+  transition: all 0.25s ease-out;
+  &:hover {
+    background-color: $gray-200;
+  }
+
+  &___image {
+    height: $iconSize;
+    width: $iconSize;
+    &.inactive {
+      filter: grayscale(100%);
+    }
+  }
+
+  &___detail {
+    font-size: $font-size-sm;
+    &.detail___status {
+      &.active {
+        color: $primary;
+      }
+    }
+
+    &.detail___name {
+      font-weight: $font-weight-light;
+    }
+  }
+}

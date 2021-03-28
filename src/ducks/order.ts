@@ -29,7 +29,7 @@ export const getAllOrders = () => {
 
 const INIT_STATE: OrderState = {
   data: { progressing: [], done: [] },
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 

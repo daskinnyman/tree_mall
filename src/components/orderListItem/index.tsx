@@ -1,10 +1,17 @@
+import "./index.scss";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Order } from "../../interfaces/order";
-
+import { useEffect, useState } from "react";
 
 export const OrderListItem = (props: Order) => {
-  const renderEllipsis = (text: string): string => {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    setIsActive(() => props.status.code < 3);
+  }, [props.status.code]);
+
+  const renderTextWithEllipsis = (text: string): string => {
     const MAX_LENGTH = 30;
     return text.length > MAX_LENGTH
       ? text.substring(0, MAX_LENGTH - 1) + "..."
@@ -12,39 +19,31 @@ export const OrderListItem = (props: Order) => {
   };
 
   return (
-    <div className="d-flex p-3 border-bottom">
+    <div className="OderListItem d-flex p-3 border-bottom">
       <div className="d-flex justify-content-between align-items-center">
         <img
+          className={`OderListItem___image ${!isActive && "inactive"}`}
           src={props.logo}
           alt={props.name}
-          height="50px"
-          width="50px"
-          style={{ filter: props.status.code > 2 ? "grayscale(100%)" : "" }}
         />
       </div>
-
-      <div className="px-2 flex-grow-1">
+      <div className="OderListItem___detail px-2 flex-grow-1">
         <div className="d-flex justify-content-between">
           <p
-            className="mb-1"
-            style={{
-              fontSize: "14px",
-              color: props.status.code > 2 ? "#212529" : "#00994e",
-            }}
+            className={`OderListItem___detail detail___status mb-1 ${
+              isActive && "active"
+            }`}
           >
             {props.status.type}
           </p>
-          {props.status.code < 3 && (
-            <p className="mb-1" style={{ fontSize: "14px" }}>
+          {isActive && (
+            <p className=" OderListItem___detail mb-1">
               預計出貨: {props.date}
             </p>
           )}
         </div>
-        <p
-          className="text-left mb-0"
-          style={{ fontSize: "14px", fontWeight: 300 }}
-        >
-          {renderEllipsis(props.name)}
+        <p className="OderListItem___detail detail_name text-left mb-0">
+          {renderTextWithEllipsis(props.name)}
         </p>
       </div>
       <div className="d-flex justify-content-between align-items-center px-2">
