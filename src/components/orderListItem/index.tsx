@@ -4,12 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Order } from "../../interfaces/order";
 import { useEffect, useState } from "react";
 
-export const OrderListItem = (props: Order) => {
+interface OrderListItemProps {
+  order: Order;
+}
+
+export const OrderListItem = ({ order }: OrderListItemProps) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    setIsActive(() => props.status.code < 3);
-  }, [props.status.code]);
+    setIsActive(() => order.status.code < 3);
+  }, [order.status.code]);
 
   const renderTextWithEllipsis = (text: string): string => {
     const MAX_LENGTH = 30;
@@ -23,8 +27,8 @@ export const OrderListItem = (props: Order) => {
       <div className="d-flex justify-content-between align-items-center">
         <img
           className={`OderListItem___image ${!isActive && "inactive"}`}
-          src={props.logo}
-          alt={props.name}
+          src={order.logo}
+          alt={order.name}
         />
       </div>
       <div className="OderListItem___detail px-2 flex-grow-1">
@@ -34,16 +38,19 @@ export const OrderListItem = (props: Order) => {
               isActive && "active"
             }`}
           >
-            {props.status.type}
+            {order.status.type}
           </p>
           {isActive && (
-            <p className=" OderListItem___detail mb-1">
-              預計出貨: {props.date}
+            <p
+              id="shippingDate"
+              className="OderListItem___detail detail___shippingDate mb-1"
+            >
+              預計出貨: {order.date}
             </p>
           )}
         </div>
         <p className="OderListItem___detail detail_name text-left mb-0">
-          {renderTextWithEllipsis(props.name)}
+          {renderTextWithEllipsis(order.name)}
         </p>
       </div>
       <div className="d-flex justify-content-between align-items-center px-2">

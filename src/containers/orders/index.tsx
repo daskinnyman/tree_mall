@@ -1,9 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { OrderList } from "../../components";
+import { OrderList, LoadingScreen } from "../../components";
 import { getAllOrders } from "../../ducks/order";
 import { rootSate } from "../../ducks/stores";
-import { LoadingScreen } from "../../components/loadingScreen";
 
 export const Orders = () => {
   const dispatch = useDispatch();

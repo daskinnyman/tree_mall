@@ -1,14 +1,12 @@
 import { OrderListHeader, OrderListItem } from "..";
 import { Order } from "../../interfaces/order";
 
-export const OrderList = ({
-  title,
-  orders,
-}: {
+interface OderListProps {
   title: string;
   orders: Order[];
-}) => {
+}
 
+export const OrderList = ({ title, orders }: OderListProps) => {
   const convertToTime = (dateString: string): number => {
     const year = +dateString.split("/")[0] + 1911;
     const month = +dateString.split("/")[1];
@@ -25,7 +23,7 @@ export const OrderList = ({
     <>
       <OrderListHeader title={title} />
       {orders.sort(sortByDate).map((order: Order, idx) => (
-        <OrderListItem key={idx} {...order} />
+        <OrderListItem key={idx} order={order} />
       ))}
     </>
   );
