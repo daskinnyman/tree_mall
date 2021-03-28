@@ -19,7 +19,7 @@ export const getAllOrders = () => {
       });
       dispatch({
         type: GET_ORDERS_FINISHED,
-        payload: { data: { progressing, done } },
+        payload: { progressing, done },
       });
     } catch (error) {
       dispatch({ type: GET_ORDERS_ERROR, payload: { error } });
@@ -43,7 +43,13 @@ export const orderReducer = (
     case GET_ORDERS_FINISHED:
       return {
         ...state,
-        ...action.payload,
+        data: {
+          progressing: [
+            ...state.data.progressing,
+            ...action.payload.progressing,
+          ],
+          done: [...state.data.done, ...action.payload.done],
+        },
         isLoading: false,
       };
     case GET_ORDERS_ERROR:
