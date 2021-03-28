@@ -1,8 +1,8 @@
-import axios from "axios";
+import httpClient from "../util/httpClient";
 import MockAdapter from "axios-mock-adapter";
-import { Order } from "../interfaces/order";
+import { Orders } from "../interfaces/order";
 
-const mock = new MockAdapter(axios);
+const mock = new MockAdapter(httpClient, { delayResponse: 2500 });
 
 mock.onGet("/orders").reply(200, {
   orders: [
@@ -45,7 +45,7 @@ mock.onGet("/orders").reply(200, {
   ],
 });
 
-export const getOrders = async (): Promise<Order> => {
-  const res = await axios.get<Order>("/orders");
+export const getOrders = async (): Promise<Orders> => {
+  const res = await httpClient.get<Orders>("/orders");
   return res.data;
 };

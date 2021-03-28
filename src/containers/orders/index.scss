@@ -1,0 +1,19 @@
+.Loading {
+  &___img {
+    width: 80px;
+    height: 80px;
+    animation: fadeInAndOut 2.5s infinite;
+  }
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

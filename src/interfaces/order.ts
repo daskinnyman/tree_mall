@@ -11,3 +11,7 @@ export interface Order {
   status: OrderStatus;
   date: string;
 }
+
+export interface Orders {
+  orders: Order[];
+}
