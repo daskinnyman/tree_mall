@@ -41,15 +41,12 @@ export const OrderListItem = ({ order }: OrderListItemProps) => {
             {order.status.type}
           </p>
           {isActive && (
-            <p
-              id="shippingDate"
-              className="OderListItem___detail detail___shippingDate mb-1"
-            >
+            <p className="OderListItem___detail detail___shippingDate mb-1">
               預計出貨: {order.date}
             </p>
           )}
         </div>
-        <p className="OderListItem___detail detail_name text-left mb-0">
+        <p className="OderListItem___detail detail___name text-left mb-0">
           {renderTextWithEllipsis(order.name)}
         </p>
       </div>
